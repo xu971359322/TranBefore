@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.mapper.TranBranchMapper" >
+  <resultMap id="BaseResultMap" type="org.java.entity.TranBranch" >
+    <id column="b_id" property="bId" jdbcType="VARCHAR" />
+    <result column="b_name" property="bName" jdbcType="VARCHAR" />
+    <result column="b_phone" property="bPhone" jdbcType="VARCHAR" />
+    <result column="b_type" property="bType" jdbcType="VARCHAR" />
+    <result column="b_province" property="bProvince" jdbcType="VARCHAR" />
+    <result column="b_city" property="bCity" jdbcType="VARCHAR" />
+    <result column="b_place" property="bPlace" jdbcType="VARCHAR" />
+    <result column="b_peoson" property="bPeoson" jdbcType="VARCHAR" />
+    <result column="b_telone" property="bTelone" jdbcType="VARCHAR" />
+    <result column="b_teltwo" property="bTeltwo" jdbcType="VARCHAR" />
+    <result column="b_x" property="bX" jdbcType="DOUBLE" />
+    <result column="b_y" property="bY" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    b_id, b_name, b_phone, b_type, b_province, b_city, b_place, b_peoson, b_telone, b_teltwo, 
+    b_x, b_y
+  </sql>
+  <select id="selAllBranch" resultMap="BaseResultMap">
+    select * from tran_branch
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tran_branch
+    where b_id = #{bId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tran_branch
+    where b_id = #{bId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.TranBranch" >
+    insert into tran_branch (b_id, b_name, b_phone, 
+      b_type, b_province, b_city, 
+      b_place, b_peoson, b_telone, 
+      b_teltwo, b_x, b_y)
+    values (#{bId,jdbcType=VARCHAR}, #{bName,jdbcType=VARCHAR}, #{bPhone,jdbcType=VARCHAR}, 
+      #{bType,jdbcType=VARCHAR}, #{bProvince,jdbcType=VARCHAR}, #{bCity,jdbcType=VARCHAR}, 
+      #{bPlace,jdbcType=VARCHAR}, #{bPeoson,jdbcType=VARCHAR}, #{bTelone,jdbcType=VARCHAR}, 
+      #{bTeltwo,jdbcType=VARCHAR}, #{bX,jdbcType=DOUBLE}, #{bY,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.TranBranch" >
+    insert into tran_branch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        b_id,
+      </if>
+      <if test="bName != null" >
+        b_name,
+      </if>
+      <if test="bPhone != null" >
+        b_phone,
+      </if>
+      <if test="bType != null" >
+        b_type,
+      </if>
+      <if test="bProvince != null" >
+        b_province,
+      </if>
+      <if test="bCity != null" >
+        b_city,
+      </if>
+      <if test="bPlace != null" >
+        b_place,
+      </if>
+      <if test="bPeoson != null" >
+        b_peoson,
+      </if>
+      <if test="bTelone != null" >
+        b_telone,
+      </if>
+      <if test="bTeltwo != null" >
+        b_teltwo,
+      </if>
+      <if test="bX != null" >
+        b_x,
+      </if>
+      <if test="bY != null" >
+        b_y,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bId != null" >
+        #{bId,jdbcType=VARCHAR},
+      </if>
+      <if test="bName != null" >
+        #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bPhone != null" >
+        #{bPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bType != null" >
+        #{bType,jdbcType=VARCHAR},
+      </if>
+      <if test="bProvince != null" >
+        #{bProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bCity != null" >
+        #{bCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bPlace != null" >
+        #{bPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bPeoson != null" >
+        #{bPeoson,jdbcType=VARCHAR},
+      </if>
+      <if test="bTelone != null" >
+        #{bTelone,jdbcType=VARCHAR},
+      </if>
+      <if test="bTeltwo != null" >
+        #{bTeltwo,jdbcType=VARCHAR},
+      </if>
+      <if test="bX != null" >
+        #{bX,jdbcType=DOUBLE},
+      </if>
+      <if test="bY != null" >
+        #{bY,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.TranBranch" >
+    update tran_branch
+    <set >
+      <if test="bName != null" >
+        b_name = #{bName,jdbcType=VARCHAR},
+      </if>
+      <if test="bPhone != null" >
+        b_phone = #{bPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="bType != null" >
+        b_type = #{bType,jdbcType=VARCHAR},
+      </if>
+      <if test="bProvince != null" >
+        b_province = #{bProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bCity != null" >
+        b_city = #{bCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bPlace != null" >
+        b_place = #{bPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="bPeoson != null" >
+        b_peoson = #{bPeoson,jdbcType=VARCHAR},
+      </if>
+      <if test="bTelone != null" >
+        b_telone = #{bTelone,jdbcType=VARCHAR},
+      </if>
+      <if test="bTeltwo != null" >
+        b_teltwo = #{bTeltwo,jdbcType=VARCHAR},
+      </if>
+      <if test="bX != null" >
+        b_x = #{bX,jdbcType=DOUBLE},
+      </if>
+      <if test="bY != null" >
+        b_y = #{bY,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where b_id = #{bId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.TranBranch" >
+    update tran_branch
+    set b_name = #{bName,jdbcType=VARCHAR},
+      b_phone = #{bPhone,jdbcType=VARCHAR},
+      b_type = #{bType,jdbcType=VARCHAR},
+      b_province = #{bProvince,jdbcType=VARCHAR},
+      b_city = #{bCity,jdbcType=VARCHAR},
+      b_place = #{bPlace,jdbcType=VARCHAR},
+      b_peoson = #{bPeoson,jdbcType=VARCHAR},
+      b_telone = #{bTelone,jdbcType=VARCHAR},
+      b_teltwo = #{bTeltwo,jdbcType=VARCHAR},
+      b_x = #{bX,jdbcType=DOUBLE},
+      b_y = #{bY,jdbcType=DOUBLE}
+    where b_id = #{bId,jdbcType=VARCHAR}
+  </update>
+</mapper>

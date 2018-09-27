@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="zh-cn">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<title>帅帅物流有限公司</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+	<script src="../js/jquery-1.8.3.min.js"></script>
+	<script src="../js/online.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yljnF2HXwEZULq3uigBX7GC9v51F1Y5V"></script>
+	<style>
+		select option {
+			width: 150px;
+			height: 30px;
+		}
+		#allmap {width: 850px;height: 500px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+
+</head>
+
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img src="../static/images/logo.png"></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="index.html">网站首页</a>
+					</li>
+					<li>
+						<a href="about.html">关于我们</a>
+					</li>
+					<li class="active">
+						<a href="online.html">在线下单</a>
+					</li>
+					<li>
+						<a href="service.html">业务范围</a>
+					</li>
+					<li>
+						<a href="news.html">新闻资讯</a>
+					</li>
+					<li>
+						<a href="contact.html">联系我们</a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img src="../static/images/banner/banner1.jpg" >
+			</div>
+			<div class="item">
+				<img src="../static/images/banner/banner2.jpg" >
+			</div>
+			<div class="item">
+				<img src="../static/images/banner/banner3.jpg" >
+			</div>
+		</div>
+
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+
+	<!--aboupg-->
+	<div class="sec aboutpg container">
+		<div class="pg-nav col-sm-3">
+			<div class="tit-ab">
+				<p>在线下单</p>
+			</div>
+			<ul>
+				<li><a href="online.html">在线下单</a></li>
+			</ul>
+			<div class="tit-ol">
+				<p>在线下单</p>
+			</div>
+			<ul>
+				<li><a href="online.html">立即下单</a></li>
+				<li><a href="problem.html">常见问题</a></li>
+			</ul>
+			<div class="tit-co">
+				<p>联系我们</p>
+			</div>
+			<ul>
+				<li><a href="contact.html">在线留言</a></li>
+			</ul>
+		</div>
+		<div class="col-sm-9 introduce">
+			<section class="title">
+				<h1>
+					在线下单
+					<span>ORDER ONLINE</span>
+				</h1>
+			</section>
+			<form th:action="@{/order/addOrder.do}" method="post">
+				<div class="onlinepg con-pad">
+					<div>
+						<p>发货人信息</p>
+						<ul class="row">
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>发货人：</p>
+								<input type="text" name="orderName"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>手机</p>
+								<input type="text" name="orderTel"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>详细地址</p>
+								<input type="text" name="orderPlace"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>发货地址</p>
+								<select id="first" height="10px">
+									<option value="-1">请选省份</option>
+									<option th:each="l:${list}" th:value="${l.province_id}" th:text="${l.provincial}"></option>
+								</select>
+							</li>
+
+						</ul>
+					</div>
+					<div>
+						<p>收货人信息</p>
+						<ul class="row">
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>收货人：</p>
+								<input type="text" name="orderReceiveName"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>电话</p>
+								<input type="text" name="orderReceiveTel"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>详细地址</p>
+								<input type="text" name="orderReceivePlace"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p><i>*</i>收货地址</p>
+								<select id="second" class="selectpicker" data-style="btn-primary">
+									<option value="-1">请选省份</option>
+									<option th:each="l:${provincial}" th:value="${l.province_id}" th:text="${l.provincial}"></option>
+								</select>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<p>货物信息</p>
+						<ul class="row">
+							<li class="col-sm-6 col-xs-12">
+								<p>包装要求：</p>
+								<input type="text" name="orderPack"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>配送运输要求：</p>
+								<input type="text"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>货物重量：</p>
+								<input type="text" name="orderWeight"/>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>付款方式：</p>
+								<input type="radio" name="orderPayFlag" value="0"/>预付
+								<input type="radio" name="orderPayFlag" value="1"/>到付
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>货品类型</p>
+								<select name="orderType">
+									<option value="普通件">普通件</option>
+									<option value="加急">加急</option>
+								</select>
+							</li>
+							<li class="col-sm-6 col-xs-12">
+								<p>需要支付的运费:</p>
+								<input type="hidden" name="orderMonry"/>
+								<input type="hidden" name="bId"/>
+								<span id="priceSpan" style="font-weight: 300;font-size: 30px;color: green"></span>
+								<span id="placeSpan" style="color: red;"></span>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<p>备注信息</p>
+						<textarea name="orderRemark"></textarea>
+					</div>
+					<p class="mes">注：我们的工作人员在收到发货请求会主动联系，请注意接听电话。</p>
+					<button type="submit" class="btn btn-info">立即提交</button>
+
+				</div>
+			</form>
+			<div id="allmap"></div>
+		</div>
+	</div>
+
+
+
+	<footer>
+		<div class="container">
+			<ul class="foot-nav clearfix">
+				<li><a href="index.html">网站首页</a></li>
+				<li><a href="about.html">关于我们</a></li>
+				<li><a href="online.html">在线下单</a></li>
+				<li><a href="service.html">业务范围</a></li>
+				<li><a href="news.html">新闻资讯</a></li>
+				<li><a href="contact.html">联系我们</a></li>
+			</ul>
+			<p class="cpr">
+				Copyright © 2009-2011,All rights reserved 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+			</p>
+		</div>
+	</footer>
+	<div class="fl">
+		<ul>
+			<li><a href="tel:15995656015">电话咨询</a></li>
+			<li><a href="index.html">网站首页</a></li>
+			<li><a href="">在线留言</a></li>
+		</ul>
+	</div>
+	<script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/js/main.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.331398,39.897445);
+        map.centerAndZoom(point,12);
+        // 创建地址解析器实例
+        var myGeo = new BMap.Geocoder();
+        // 将地址解析结果显示在地图上,并调整地图视野
+        myGeo.getPoint("武汉市徐家棚", function(point){
+            if (point) {
+                map.centerAndZoom(point, 16);
+                map.addOverlay(new BMap.Marker(point));
+            }else{
+                alert("您选择地址没有解析到结果!");
+            }
+        }, "武汉市");
+	</script>
+</body>
+
+</html>

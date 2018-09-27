@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.mapper.TranOrderMapper" >
+  <resultMap id="BaseResultMap" type="org.java.entity.TranOrder" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="order_tel" property="orderTel" jdbcType="VARCHAR" />
+    <result column="order_place" property="orderPlace" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="order_in_time" property="orderInTime" jdbcType="TIMESTAMP" />
+    <result column="order_getstyle" property="orderGetstyle" jdbcType="VARCHAR" />
+    <result column="order_receive_name" property="orderReceiveName" jdbcType="VARCHAR" />
+    <result column="order_receive_tel" property="orderReceiveTel" jdbcType="VARCHAR" />
+    <result column="order_receive_place" property="orderReceivePlace" jdbcType="VARCHAR" />
+    <result column="order_out_time" property="orderOutTime" jdbcType="TIMESTAMP" />
+    <result column="order_pay" property="orderPay" jdbcType="VARCHAR" />
+    <result column="order_weight" property="orderWeight" jdbcType="VARCHAR" />
+    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+    <result column="order_pack" property="orderPack" jdbcType="VARCHAR" />
+    <result column="order_car" property="orderCar" jdbcType="VARCHAR" />
+    <result column="order_smr" property="orderSmr" jdbcType="VARCHAR" />
+    <result column="order_monry" property="orderMonry" jdbcType="DOUBLE" />
+    <result column="order_pay_flag" property="orderPayFlag" jdbcType="INTEGER" />
+    <result column="b_id" property="bId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, order_name, order_tel, order_place, order_type, order_in_time, order_getstyle, 
+    order_receive_name, order_receive_tel, order_receive_place, order_out_time, order_pay, 
+    order_weight, order_remark, order_pack, order_car, order_smr, order_monry, order_pay_flag, 
+    b_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tran_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tran_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.java.entity.TranOrder" >
+    insert into tran_order (order_id, order_name, order_tel, 
+      order_place, order_type, order_in_time, 
+      order_getstyle, order_receive_name, order_receive_tel, 
+      order_receive_place, order_out_time, order_pay, 
+      order_weight, order_remark, order_pack, 
+      order_car, order_smr, order_monry, 
+      order_pay_flag, b_id)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderName,jdbcType=VARCHAR}, #{orderTel,jdbcType=VARCHAR}, 
+      #{orderPlace,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, #{orderInTime,jdbcType=TIMESTAMP}, 
+      #{orderGetstyle,jdbcType=VARCHAR}, #{orderReceiveName,jdbcType=VARCHAR}, #{orderReceiveTel,jdbcType=VARCHAR}, 
+      #{orderReceivePlace,jdbcType=VARCHAR}, #{orderOutTime,jdbcType=TIMESTAMP}, #{orderPay,jdbcType=VARCHAR}, 
+      #{orderWeight,jdbcType=VARCHAR}, #{orderRemark,jdbcType=VARCHAR}, #{orderPack,jdbcType=VARCHAR}, 
+      #{orderCar,jdbcType=VARCHAR}, #{orderSmr,jdbcType=VARCHAR}, #{orderMonry,jdbcType=DOUBLE}, 
+      #{orderPayFlag,jdbcType=INTEGER}, #{bId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.java.entity.TranOrder" >
+    insert into tran_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderName != null" >
+        order_name,
+      </if>
+      <if test="orderTel != null" >
+        order_tel,
+      </if>
+      <if test="orderPlace != null" >
+        order_place,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="orderInTime != null" >
+        order_in_time,
+      </if>
+      <if test="orderGetstyle != null" >
+        order_getstyle,
+      </if>
+      <if test="orderReceiveName != null" >
+        order_receive_name,
+      </if>
+      <if test="orderReceiveTel != null" >
+        order_receive_tel,
+      </if>
+      <if test="orderReceivePlace != null" >
+        order_receive_place,
+      </if>
+      <if test="orderOutTime != null" >
+        order_out_time,
+      </if>
+      <if test="orderPay != null" >
+        order_pay,
+      </if>
+      <if test="orderWeight != null" >
+        order_weight,
+      </if>
+      <if test="orderRemark != null" >
+        order_remark,
+      </if>
+      <if test="orderPack != null" >
+        order_pack,
+      </if>
+      <if test="orderCar != null" >
+        order_car,
+      </if>
+      <if test="orderSmr != null" >
+        order_smr,
+      </if>
+      <if test="orderMonry != null" >
+        order_monry,
+      </if>
+      <if test="orderPayFlag != null" >
+        order_pay_flag,
+      </if>
+      <if test="bId != null" >
+        b_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderName != null" >
+        #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null" >
+        #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPlace != null" >
+        #{orderPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderInTime != null" >
+        #{orderInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderGetstyle != null" >
+        #{orderGetstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceiveName != null" >
+        #{orderReceiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceiveTel != null" >
+        #{orderReceiveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceivePlace != null" >
+        #{orderReceivePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOutTime != null" >
+        #{orderOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPay != null" >
+        #{orderPay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWeight != null" >
+        #{orderWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null" >
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPack != null" >
+        #{orderPack,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCar != null" >
+        #{orderCar,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSmr != null" >
+        #{orderSmr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMonry != null" >
+        #{orderMonry,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPayFlag != null" >
+        #{orderPayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="bId != null" >
+        #{bId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.java.entity.TranOrder" >
+    update tran_order
+    <set >
+      <if test="orderName != null" >
+        order_name = #{orderName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTel != null" >
+        order_tel = #{orderTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPlace != null" >
+        order_place = #{orderPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderInTime != null" >
+        order_in_time = #{orderInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderGetstyle != null" >
+        order_getstyle = #{orderGetstyle,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceiveName != null" >
+        order_receive_name = #{orderReceiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceiveTel != null" >
+        order_receive_tel = #{orderReceiveTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orderReceivePlace != null" >
+        order_receive_place = #{orderReceivePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOutTime != null" >
+        order_out_time = #{orderOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPay != null" >
+        order_pay = #{orderPay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderWeight != null" >
+        order_weight = #{orderWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="orderRemark != null" >
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPack != null" >
+        order_pack = #{orderPack,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCar != null" >
+        order_car = #{orderCar,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSmr != null" >
+        order_smr = #{orderSmr,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMonry != null" >
+        order_monry = #{orderMonry,jdbcType=DOUBLE},
+      </if>
+      <if test="orderPayFlag != null" >
+        order_pay_flag = #{orderPayFlag,jdbcType=INTEGER},
+      </if>
+      <if test="bId != null" >
+        b_id = #{bId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.java.entity.TranOrder" >
+    update tran_order
+    set order_name = #{orderName,jdbcType=VARCHAR},
+      order_tel = #{orderTel,jdbcType=VARCHAR},
+      order_place = #{orderPlace,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      order_in_time = #{orderInTime,jdbcType=TIMESTAMP},
+      order_getstyle = #{orderGetstyle,jdbcType=VARCHAR},
+      order_receive_name = #{orderReceiveName,jdbcType=VARCHAR},
+      order_receive_tel = #{orderReceiveTel,jdbcType=VARCHAR},
+      order_receive_place = #{orderReceivePlace,jdbcType=VARCHAR},
+      order_out_time = #{orderOutTime,jdbcType=TIMESTAMP},
+      order_pay = #{orderPay,jdbcType=VARCHAR},
+      order_weight = #{orderWeight,jdbcType=VARCHAR},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      order_pack = #{orderPack,jdbcType=VARCHAR},
+      order_car = #{orderCar,jdbcType=VARCHAR},
+      order_smr = #{orderSmr,jdbcType=VARCHAR},
+      order_monry = #{orderMonry,jdbcType=DOUBLE},
+      order_pay_flag = #{orderPayFlag,jdbcType=INTEGER},
+      b_id = #{bId,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

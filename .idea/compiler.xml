@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="transport_before_api" />
+        <module name="transport_before_consumer_80" />
+        <module name="transport_before_eureka_7001" />
+        <module name="transport_before_eureka_7002" />
+        <module name="transport_before_xu_8001" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="transport_before" target="1.8" />
+      <module name="transport_before_api" target="1.7" />
+      <module name="transport_before_consumer_80" target="1.8" />
+      <module name="transport_before_eureka_7001" target="1.8" />
+      <module name="transport_before_eureka_7002" target="1.8" />
+      <module name="transport_before_xu_8001" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
