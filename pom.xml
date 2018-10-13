@@ -14,6 +14,7 @@
     <module>transport_before_consumer_80</module>
       <module>transport_before_xu_8001</module>
       <module>transport_before_api</module>
+    <module>transport_before_hm_8002</module>
   </modules>
 
   <name>transport_before</name>

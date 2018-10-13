@@ -10,6 +10,7 @@
         <module name="transport_before_consumer_80" />
         <module name="transport_before_eureka_7001" />
         <module name="transport_before_eureka_7002" />
+        <module name="transport_before_hm_8002" />
         <module name="transport_before_xu_8001" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="transport_before_consumer_80" target="1.8" />
       <module name="transport_before_eureka_7001" target="1.8" />
       <module name="transport_before_eureka_7002" target="1.8" />
+      <module name="transport_before_hm_8002" target="1.7" />
       <module name="transport_before_xu_8001" target="1.8" />
     </bytecodeTargetLevel>
   </component>

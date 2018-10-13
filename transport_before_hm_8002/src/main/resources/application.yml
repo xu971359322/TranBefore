@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8002
 
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
@@ -9,7 +9,7 @@ mybatis:
 
 spring:
    application:
-    name: before-xu #在eureka注册的名字
+    name: before-hm #在eureka注册的名字
    datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
@@ -29,13 +29,13 @@ eureka:
           defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
 
   instance:
-    instance-id: before_xu8001  #修改eureke上面的显示地址
+    instance-id: before_hm8002  #修改eureke上面的显示地址
     prefer-ip-address: true #访问路径可以显示IP地址 不会显示localhost 显示电脑的的网关
 
 #通过info可以查看出当前服务的信息
 info:
   app.name: microservicecloud
-  company.name: www.xuzhuo.com
+  company.name: www.huangming.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
 

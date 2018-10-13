@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/hm/flow/css/flowplugin.css"/>
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+    <!--	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>-->
+    <script type="text/javascript" src="/hm/flow/js/flowplugin.min.js"></script>
+    <link rel="stylesheet" href="/js/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<!--static/-->
+<body>
+<div style="height:270px;background-color:ghostwhite">
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <h2 class="text-center">
+                    快递查询
+                </h2>
+                <br/>
+                <center>
+                    <form class="form-search form-inline" id="myfrm">
+                    <select style="height: 65px;width: 100px;" class="form-control m-b" name="comId">
+                        <option value="-1">请选择</option>
+                        <option value="shunfeng">顺丰</option>
+                        <option value="shentong">申通</option>
+                        <option value="yuantong">圆通</option>
+                        <option value="zhongtong">中通</option>
+                        <option value="yunda">韵达</option>
+                        <option value="tiantian">天天</option>
+                        <option value="ems">EMS</option>
+                    </select>
+
+                    <input  name="id" class="form-control"  placeholder="请输入您要查询的单号" style="height: 65px;width: 600px" type="text"> &nbsp;&nbsp;
+                    <button  style="height: 65px;width: 100px;background-color: #ff961e;color: white" type="button" id="search">查找</button>
+                    </form>
+                </center>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--流程展示区 start-->
+<div class="flowtest"></div>
+<!--流程展示区 start-->
+<div id="body"></div>
+
+<!--<script>
+    $(function () {  //, headers: { 'x-requested-with': 'XMLHttpRequest' }
+        $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+    });
+</script>-->
+
+<script>
+/*    var url = 'http://poll.kuaidi100.com/poll/query.do?customer=D30057C549718807FEDAFBD37584D13B&sign=C39438EE9662179AD30C99E72D1C056A&param={"com":"yuantong","num":"801796200490118632","from":"","to":"","resultv2":0}';
+
+    $.ajax({
+        type: "get",
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        dataType: 'jsonp',
+        jsonp: 'callback',//自定义
+        jsonpClaaback: "success_jsonpCallback",//用户定义的callback函数，没有定义的话会jQuery会自动生成以jQuery开头的函数 
+        async: false,
+        success: function (obj) {
+            console.log(obj);
+        }
+    });*/
+
+
+    /*        $.ajax(url, {
+        dataType: 'jsonp',
+        crossDomain: true,
+        jsonp: "callback",
+        success: function(data) {
+            if(data && data.resultcode == '200'){
+                console.log(data.result.today);
+            }
+            console.log(data);
+            var val = data;
+        }
+    });*/
+
+
+</script>
+<script>
+
+    $(function () {
+
+        $("#search").click(function () {
+
+            $(".flowtest").html("");
+            $("#body").html("");
+
+            $.ajax({
+                url:"queryExpressage.do",
+                type:"post",
+                data:$("#myfrm").serialize(),
+                dataType:"json",
+                success:function(data){
+
+                    alert(123);
+                    var str =JSON.stringify(data);
+                    console.log(str);
+
+                    var str3 = str.replace(/context/g, 'jobOther');
+
+                    var str4 = str3.replace(/ftime/g, 'createDate');
+                    var jsObj3 = JSON.parse(str4);
+
+                    var JSONstr4 = JSON.stringify(jsObj3.data);
+
+                    var val = " {\n" + "\"data\": " + JSONstr4 + "}";
+
+                    //console.log(val);
+
+                    var val2 = JSON.parse(val);
+                    //console.log(val2);
+
+                    //接收数据
+                    var testDate = val2;
+
+
+                    var opt = {
+                        "jsonDate": testDate,//json数据
+                        "imgSrcStart": "/hm/flow/img/f1.png",//最新流程节点图片（第一个节点）
+                        "imgSrcOther": "/hm/flow/img/f2.png",//其它流程节点图片
+                        "imgWidth": "20px",//图片宽  设置第一个图片的宽度
+                        "imgHeight": "20px"//图片高  设置第一个图片的高度
+                    };
+
+                    /*var opt = {
+                        "jsonDate":testDate,//json数据
+                        "imgSrcStart":"img/f1.png",//最新流程节点图片（第一个节点）
+                        "imgSrcOther":"img/f2.png",//其它流程节点图片
+                        "imgClass":"firstImg"//设置所有图片的宽高
+                    };*/
+
+                    $(".flowtest").flowplugin(opt);
+
+                }
+            });
+        })
+
+
+
+
+
+    });
+
+
+
+</script>
+
+
+</body>
+</html>
